@@ -4,7 +4,8 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
-        main.cpp
+        main.cpp \
+    game.cpp
 
 LIBS += -L$$PWD/../../../../usr/lib/x86_64-linux-gnu/ -lsfml-window
 LIBS += -L$$PWD/../../../../usr/lib/x86_64-linux-gnu/ -lsfml-system
@@ -15,6 +16,9 @@ LIBS += -L$$PWD/../../../../usr/lib/x86_64-linux-gnu/ -lsfml-audio
 
 INCLUDEPATH += $$PWD/../../../../usr/include/SFML
 DEPENDPATH += $$PWD/../../../../usr/include/SFML
+
+HEADERS += \
+    game.h
 
 
 
