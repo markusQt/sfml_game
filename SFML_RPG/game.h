@@ -21,11 +21,15 @@ private:
  void handleEvents();
  void handleKeyEvents();
  void handleMausEvents();
+ void loadImageAndDraw();
  void render();
+ const float speed = 5;
  unsigned int mModeWidth;
  unsigned int mModeHeight;
  const char * title;
  sf::RenderWindow * mWindow;
+ sf::Texture *texPlayer;
+ sf::Sprite *playerSprite;
 
 };
 
