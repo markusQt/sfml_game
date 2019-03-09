@@ -23,7 +23,8 @@ private:
  void handleMausEvents();
  void loadImageAndDraw();
  void render();
- const float speed = 5;
+ int countWalking =0;
+ const float speed = 3;
  unsigned int mModeWidth;
  unsigned int mModeHeight;
  const char * title;

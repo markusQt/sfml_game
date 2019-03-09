@@ -1,4 +1,6 @@
 #include "game.h"
+#include <istream>
+#include <sstream>
 
 
 
@@ -9,8 +11,10 @@ Game::Game(unsigned int modeWidth, unsigned int modeHeight, const char *title)
     this->mModeWidth= modeWidth;
     this->mModeHeight= modeHeight;
     this->title = title;
-    initWindow();
+    playerSprite = new sf::Sprite();
+    texPlayer = new sf::Texture();
     loadImageAndDraw();
+    initWindow();
     run();
 }
 
@@ -28,18 +32,15 @@ void Game::run()
 {   sf::Clock clock;
     sf::Time zeitdauer;
     while(mWindow->isOpen()){
-       clock.restart();
        handleEvents();
        render();
-       zeitdauer= clock.getElapsedTime();
-       std::cout << "FPS?: " << zeitdauer.asMilliseconds() << std::endl;
     }
 }
 
 void Game::initWindow()
 {
     mWindow = new sf::RenderWindow(sf::VideoMode(mModeWidth,mModeHeight),title);
-    mWindow->setFramerateLimit(50);
+    mWindow->setFramerateLimit(15);
 }
 
 void Game::handleEvents()
@@ -72,14 +73,15 @@ void Game::handleKeyEvents()
         {
 
             std::cout<< "Hoch" <<std::endl;
+            playerSprite->setTextureRect(sf::IntRect(countWalking*30,65*1,30,65));
             playerSprite->move(0.0f,-speed);
         }
 
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
         {
-           // Escape Key also raus
             std::cout<< "Links" <<std::endl;
+            playerSprite->setTextureRect(sf::IntRect(countWalking*30,65*2,30,65));
             playerSprite->move(-speed,0.0f);
         }
 
@@ -87,6 +89,7 @@ void Game::handleKeyEvents()
         {
            std::cout<< "Rechts" <<std::endl;
                               //WIDTH -HEIGHT
+           playerSprite->setTextureRect(sf::IntRect(countWalking*30,65*3,30,65));
            playerSprite->move(speed,0.0f);
         }
 
@@ -95,10 +98,15 @@ void Game::handleKeyEvents()
         {
 
            std::cout<< "Runter" <<std::endl;
+           playerSprite->setTextureRect(sf::IntRect(countWalking*30,0,30,65));
            playerSprite->move(0.0f,speed);
         }
 
+        countWalking++;
 
+        if (countWalking==3){
+            countWalking=0;
+        }
 }
 
 void Game::handleMausEvents()
@@ -115,13 +123,16 @@ void Game::handleMausEvents()
 
 void Game::loadImageAndDraw()
 {
-    texPlayer = new sf::Texture();
-    if(!texPlayer->loadFromFile("assets/walkingSkel.png",sf::IntRect(0,0,270,300))){
+
+    if(!texPlayer->loadFromFile("assets/femalewalk.png"))
+    {
         std::cout << "Textur konnte nicht geladen werden"<<std::endl;
     }else{
         std::cout << "Textur erfolgreich geladen erden"<<std::endl;
-        playerSprite = new sf::Sprite();
         playerSprite->setTexture(*texPlayer);
+        playerSprite->setTextureRect(sf::IntRect(0,0,30,65));
+        playerSprite->setPosition(400 ,300 );
+
 
     }
 }
