@@ -3,9 +3,11 @@ CONFIG += console c++11
 CONFIG -= app_bundle
 CONFIG -= qt
 
-SOURCES += \
-        main.cpp \
-    game.cpp
+SOURCES += \        
+    game.cpp \
+    main.cpp \
+
+
 
 LIBS += -L$$PWD/../../../../usr/lib/x86_64-linux-gnu/ -lsfml-window
 LIBS += -L$$PWD/../../../../usr/lib/x86_64-linux-gnu/ -lsfml-system
@@ -18,7 +20,13 @@ INCLUDEPATH += $$PWD/../../../../usr/include/SFML
 DEPENDPATH += $$PWD/../../../../usr/include/SFML
 
 HEADERS += \
-    game.h
+    game.h \
+
+DISTFILES += \
+    assets/walkingSkel.png
+
+
+
 
 
 

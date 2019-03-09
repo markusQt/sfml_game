@@ -1,35 +1,31 @@
 #ifndef GAME_H
 #define GAME_H
-#include <iostream>
-#include <ctime>
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
-#include <SFML/Network.hpp>
 #include <SFML/Window.hpp>
-#include <SFML/System.hpp>
+#include <SFML/Graphics.hpp>
+#include <iostream>
 
 class Game
 {
 public:
 
     //Constructor Destructor
-    Game();
+    Game(unsigned int modeWidth, unsigned int modeHeight, const char * title);
     ~Game();
 
-    //Functions
-    void updateSFML_Event();
-    void update();
-    void render();
-    void run();
+
+
 
 private:
-    // initialize Functions
-    void initWindow();
-    // Static Functions
-
-    //Variables
-    sf::RenderWindow *window;
-    sf::Event sfEvent;
+ void run();
+ void initWindow();
+ void handleEvents();
+ void handleKeyEvents();
+ void handleMausEvents();
+ void render();
+ unsigned int mModeWidth;
+ unsigned int mModeHeight;
+ const char * title;
+ sf::RenderWindow * mWindow;
 
 };
 

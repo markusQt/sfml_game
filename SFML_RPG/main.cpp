@@ -1,10 +1,7 @@
 #include<game.h>
 
-
-
 int main()
 {   
-    Game game;
-    game.run();
+    Game game(800,600,"Erstes SFML Fenster");
     return 0;
 }
